@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<servlet>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<!-- Register resources and providers under com.vogella.jersey.first package. -->
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>com.rest.favourapp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>Jainrain Token</servlet-name>
+		<servlet-class>com.janrain.example.AuthInfo</servlet-class>
+		<init-param>
+			<param-name>apiKey</param-name>
+			<param-value>afda135b8c8a7be6887778b346a0416bf6f7f2a4</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		<servlet>
+		<servlet-name>Read Jainrain Token</servlet-name>
+		<servlet-class>com.janrain.example.ReadJanrainToken</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jainrain Token</servlet-name>
+		<url-pattern>/rest/janrainToken</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>Read Jainrain Token</servlet-name>
+		<url-pattern>/rest/readJanrainToken</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>ObjectifyFilter</filter-name>
+		<filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ObjectifyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>com.rest.favourapp.OfyHelper</listener-class>
+	</listener>
+</web-app>
