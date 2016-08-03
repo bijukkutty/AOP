@@ -1,0 +1,5 @@
+com\rest\AOPBackendApp\AOPBean.class
+com\rest\AOPBackendApp\AOPPricingEntity.class
+com\rest\AOPBackendApp\OfyHelper.class
+com\rest\AOPBackendApp\CrudAOP.class
+com\rest\AOPBackendApp\AOPEntity.class
